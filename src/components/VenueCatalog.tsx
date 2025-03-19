@@ -2,8 +2,8 @@ import Link from "next/link";
 import Card from "./Card";
 import { VenueItem, VenueJson } from "../../interface";
 
-export default async function VenueCatalog({venueJson}: {venueJson:Promise<VenueJson>}){
-    const venueJsonReady = await venueJson;
+export default async function VenueCatalog({venuesJson}: {venuesJson:Promise<VenueJson>}){
+    const venueJsonReady = await venuesJson;
     return(
         <>
             <h1 className='text-3xl font-bold text-center mt-5'>Select yout Venue</h1>

@@ -2,10 +2,10 @@ import getVenues from "@/libs/getVenues";
 import VenueCatalog from "@/components/VenueCatalog";
 import { Suspense } from "react";
 import { LinearProgress } from "@mui/material";
-import { VenueItem, VenueJson } from "../../../../interface";
+import { VenueJson } from "../../../../interface";
 
 export default function Venue(){
-  const venues = getVenues();
+  const venues:Promise<VenueJson> = getVenues();
 
     return(
         <div className="max-w-6xl w-full mx-auto px-4">
