@@ -4,15 +4,16 @@ import Image from 'next/image'
 import InteractiveCard from './InteractiveCard';
 import { Rating } from '@mui/material';
 
-export default function Card({venueName, imgSrc, onUpdateList} : {venueName:string, imgSrc:string, onUpdateList:Function}){
+export default function Card({venueName, imgSrc, onUpdateList} : {venueName:string, imgSrc:string, onUpdateList?:Function}){
     function ratingChangeHandler(newValue: number | null) {
         // console.log(newValue)
-        if (newValue != null) {
-            
-            onUpdateList(venueName, newValue)
-        }
-        else{
-            onUpdateList(venueName, 0)
+        if(onUpdateList){
+            if (newValue != null) {         
+                onUpdateList(venueName, newValue)
+            }
+            else{
+                onUpdateList(venueName, 0)
+            }
         }
     }
 
@@ -33,20 +34,23 @@ export default function Card({venueName, imgSrc, onUpdateList} : {venueName:stri
                 <div className="h-[30%] p-[10px] space-y-2">
                     <h4 className="font-semibold text-[16px] text-[#055D70]">"{venueName}</h4>
                     {/* <p className="text-xs">A stunning bouquet hall where love blossoms and unforgettable memories are made.</p> */}
-                    <Rating         
-                        onChange={(event, newValue) => {
-                            ratingChangeHandler(newValue);
-                        }}
-                        onClick={(event) => {
-                            event.stopPropagation();
-                            // event.preventDefault();
-                        }}
-                        
-                        name={venueName + " Rating"}
-                        precision={1}
-                        id={venueName + " Rating"}
-                        data-testid={venueName + " Rating"}
-                    />
+                    {
+                        onUpdateList ?
+                        <Rating         
+                            onChange={(event, newValue) => {
+                                ratingChangeHandler(newValue);
+                            }}
+                            onClick={(event) => {
+                                event.stopPropagation();
+                                // event.preventDefault();
+                            }}
+                            
+                            name={venueName + " Rating"}
+                            precision={1}
+                            id={venueName + " Rating"}
+                            data-testid={venueName + " Rating"}
+                        /> : ""
+                    }
                 </div>
             </div>
         </InteractiveCard>

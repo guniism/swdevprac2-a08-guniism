@@ -1,9 +1,17 @@
-import CardPanel from "@/components/CardPanel";
+import getVenues from "@/libs/getVenues";
+import VenueCatalog from "@/components/VenueCatalog";
+import { Suspense } from "react";
+import { LinearProgress } from "@mui/material";
+import { VenueItem, VenueJson } from "../../../../interface";
 
-export default function page(){
+export default function Venue(){
+  const venues = getVenues();
+
     return(
         <div className="max-w-6xl w-full mx-auto px-4">
-          <CardPanel />
+          <Suspense fallback={ <p className="text-center my-5">Loading ... <LinearProgress/></p>}>
+            <VenueCatalog venueJson={venues}/>
+          </Suspense>
         </div>
     )
 }
