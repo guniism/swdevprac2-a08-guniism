@@ -10,7 +10,7 @@ export default function Venue(){
     return(
         <div className="max-w-6xl w-full mx-auto px-4">
           <Suspense fallback={ <p className="text-center my-5">Loading ... <LinearProgress/></p>}>
-            <VenueCatalog venueJson={venues}/>
+            <VenueCatalog venuesJson={venues}/>
           </Suspense>
         </div>
     )
